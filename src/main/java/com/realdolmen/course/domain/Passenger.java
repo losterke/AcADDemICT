@@ -1,6 +1,8 @@
 package com.realdolmen.course.domain;
 
 import com.sun.istack.internal.NotNull;
+import org.hibernate.annotations.common.util.impl.LoggerFactory;
+import org.slf4j.Logger;
 
 import javax.annotation.Generated;
 import javax.persistence.*;
@@ -14,6 +16,8 @@ public class Passenger {
 
     static enum PassengerType{OCCASIONAL, REGULAR}
 
+    private static Logger logger = org.slf4j.LoggerFactory.getLogger(Passenger.class);
+
     @Id
     @GeneratedValue
     private Long id;
@@ -24,21 +28,31 @@ public class Passenger {
     @Column(length = 50)
     private String firstName;
     private int frequentFlyerMiles;
-    private Byte[] picture;
+    private byte[] picture;
     @Column(nullable = false, updatable = false)
+    @Temporal(TemporalType.DATE)
     private Date dateOfBirth;
     @Transient
     private Integer age;
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private PassengerType passengerType;
+    @Temporal(TemporalType.DATE)
     private Date lastFlight;
+    @Temporal(TemporalType.DATE)
+    private Date dateLastUpdated;
+
+    @PrePersist
+    private void updateTime(){
+        logger.info("Generating updateTime for entitty with name " + firstName +" "+ lastName);
+        dateLastUpdated = new Date();
+    }
 
     protected Passenger() {
 
     }
 
-    public Passenger(String ssn, String lastName, String firstName, int frequentFlyerMiles, Byte[] picture, Date dateOfBirth, PassengerType passengerType, Date lastFlight) {
+    public Passenger(String ssn, String lastName, String firstName, int frequentFlyerMiles, byte[] picture, Date dateOfBirth, PassengerType passengerType, Date lastFlight) {
         this.ssn = ssn;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -51,6 +65,7 @@ public class Passenger {
         if(dateOfBirth != null)
             time.setTime(new Date().getTime() - dateOfBirth.getTime());
         age = time.getYear();
+
     }
 
     public Date getDateOfBirth() {
@@ -89,7 +104,11 @@ public class Passenger {
         return frequentFlyerMiles;
     }
 
-    public Byte[] getPicture() {
+    public byte[] getPicture() {
         return picture;
+    }
+
+    public Date getDateLastUpdated() {
+        return dateLastUpdated;
     }
 }

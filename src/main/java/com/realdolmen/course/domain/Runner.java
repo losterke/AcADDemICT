@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -26,7 +27,8 @@ public class Runner {
             em.persist(new Book("bla", "me"));
             Date birth = new Date();
             birth.setTime(406867380);
-            em.persist(new Passenger("bal","Lemahieu","Tim", 50,new Byte[10], birth, Passenger.PassengerType.OCCASIONAL, new Date()));
+            em.persist(new Passenger("bal", "Lemahieu", "Tim", 50, new byte[10], birth, Passenger.PassengerType.OCCASIONAL, new Date()));
+            em.persist(new Ticket(BigDecimal.ONE, new Date(),"Souse"));
             transaction.commit();
         }catch (Exception e){
             e.printStackTrace();
