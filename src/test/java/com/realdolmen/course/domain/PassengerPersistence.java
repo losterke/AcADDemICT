@@ -22,7 +22,6 @@ public class PassengerPersistence extends PersistenceTest {
         assertNotNull(p.getDateOfBirth());
         assertNotNull(p.getPassengerType());
         assertNotNull(p.getAge());
-        System.out.println("My age is :" + p.getAge());
     }
 
     @Test()
@@ -31,7 +30,7 @@ public class PassengerPersistence extends PersistenceTest {
         assertNull(p.getId());
         assertNull(p.getDateOfBirth());
         assertNull(p.getPassengerType());
-        
+
     }
 
 }
