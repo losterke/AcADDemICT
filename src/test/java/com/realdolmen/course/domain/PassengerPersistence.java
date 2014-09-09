@@ -30,7 +30,6 @@ public class PassengerPersistence extends PersistenceTest {
         assertNull(p.getId());
         assertNull(p.getDateOfBirth());
         assertNull(p.getPassengerType());
-
     }
 
 }
