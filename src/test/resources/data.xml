@@ -1,4 +1,8 @@
 <dataset>
-    <passenger id="1" ssn="bal" firstName="Tim" lastName="Lemahieu" frequentFlyerMiles="75" picture="01" dateOfBirth="1991-09-24" passengerType="REGULAR" lastFlight="2014-09-10"/>
-    <passenger id="2" ssn="bla" firstName="Jef" lastName="Vermeulen" frequentFlyerMiles="80" picture="10" dateOfBirth="1992-06-05" passengerType="REGULAR" lastFlight="2014-09-10"/>
+    <passenger id="1" ssn="bal" firstName="Tim" lastName="Lemahieu" frequentFlyerMiles="75" picture="01" dateOfBirth="1991-09-24" passengerType="REGULAR" lastFlight="2014-09-10"  street1="Kraaineststraat" street2="92" city="Erpe" zipCode="9420" country="Belgium"/>
+    <passenger id="2" ssn="bla" firstName="Jef" lastName="Vermeulen" frequentFlyerMiles="80" picture="10" dateOfBirth="1992-06-05" passengerType="REGULAR" lastFlight="2014-09-10" street1="Lange Zandweg" street2="3" city="Antwerpen" zipCode="2000" country="Belgium"/>
+    <!--<flight id="1" number="MH170" departureTime="12:35:12" arrivalTime="15:17:43" />-->
+    <!--<flight id="2" number="MH080" departureTime="15:35:12" arrivalTime="19:17:43" />-->
+    <ticket id="1" price="50" dateOfDeparture="2014-09-09"  destination="Paris" passenger_id="1" />
+    <ticket id="2" price="50" dateOfDeparture="2014-09-09"  destination="Paris" passenger_id="2" />
 </dataset>

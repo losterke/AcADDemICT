@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 
 import javax.annotation.Generated;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 /**
@@ -42,6 +44,12 @@ public class Passenger {
     @Temporal(TemporalType.DATE)
     private Date dateLastUpdated;
 
+    @Embedded
+    private Adress adress;
+
+    @OneToMany(mappedBy = "passenger")
+    private Collection<Ticket> tickets = new ArrayList<>();
+
     @PrePersist
     private void updateTime(){
         logger.info("Generating updateTime for entitty with name " + firstName +" "+ lastName);
@@ -52,7 +60,7 @@ public class Passenger {
 
     }
 
-    public Passenger(String ssn, String lastName, String firstName, int frequentFlyerMiles, byte[] picture, Date dateOfBirth, PassengerType passengerType, Date lastFlight) {
+    public Passenger(String ssn, String lastName, String firstName, int frequentFlyerMiles, byte[] picture, Date dateOfBirth, PassengerType passengerType, Date lastFlight, Adress adress) {
         this.ssn = ssn;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -61,11 +69,7 @@ public class Passenger {
         this.dateOfBirth = dateOfBirth;
         this.passengerType = passengerType;
         this.lastFlight = lastFlight;
-        Date time = new Date();
-        if(dateOfBirth != null)
-            time.setTime(new Date().getTime() - dateOfBirth.getTime());
-        age = time.getYear();
-
+        this.adress = adress;
     }
 
     public Date getDateOfBirth() {
@@ -73,7 +77,8 @@ public class Passenger {
     }
 
     public Integer getAge() {
-        return age;
+        Long age = (new Date().getTime()- dateOfBirth.getTime())/60*60*24*365;
+        return age.intValue();
     }
 
     public PassengerType getPassengerType() {
@@ -158,5 +163,17 @@ public class Passenger {
 
     public void setDateLastUpdated(Date dateLastUpdated) {
         this.dateLastUpdated = dateLastUpdated;
+    }
+
+    public Adress getAdress() {
+        return adress;
+    }
+
+    public void setAdress(Adress adress) {
+        this.adress = adress;
+    }
+
+    public Collection<Ticket> getTickets() {
+        return tickets;
     }
 }

@@ -13,7 +13,7 @@ import static org.junit.Assert.assertNull;
 /**
  * Created by TLAAU71 on 9/09/2014.
  */
-public class TicketPersistenceTest extends PersistenceTest {
+public class TicketPersistenceTest extends DataSetPersistenceTest {
 
     @Test
     public void ticketPersistenceTest(){
@@ -29,14 +29,16 @@ public class TicketPersistenceTest extends PersistenceTest {
 
     @Test
     public void ticketRemove() {
-        Ticket t = new Ticket(BigDecimal.TEN, new Date(), "Berlin");
+        Ticket t = em().getReference(Ticket.class, 1L);
         em().remove(t);
+        em().flush();
+        em().clear();
         assertNull(t.getId());
     }
 
     @Test
     public void ticketUpdate(){
-        Ticket t = new Ticket(BigDecimal.TEN, new Date(), "Paris");
+        Ticket t = em().getReference(Ticket.class, 2L);
         assertEquals("Paris", t.getDestination());
         em().persist(t);
         t.setDestination("London");

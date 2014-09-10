@@ -3,6 +3,8 @@ package com.realdolmen.course.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 /**
@@ -18,6 +20,14 @@ public class Ticket implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dateOfDeparture;
     private String destination;
+
+    @ManyToOne
+    @JoinColumn(name = "passenger_id")
+    private Passenger passenger;
+
+    @ManyToOne
+    @JoinColumn(name = "flight_id")
+    private Flight flight;
 
     protected Ticket(){
 
@@ -55,5 +65,13 @@ public class Ticket implements Serializable {
 
     public void setDestination(String destination) {
         this.destination = destination;
+    }
+
+    public Passenger getPassenger() {
+        return passenger;
+    }
+
+    public Flight getFlight() {
+        return flight;
     }
 }

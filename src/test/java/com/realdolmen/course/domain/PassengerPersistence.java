@@ -17,7 +17,8 @@ public class PassengerPersistence extends DataSetPersistenceTest {
     @Test
     public void PassengerPersistence()throws Exception{
 
-        Passenger p = new Passenger("bal","Vermeulen","Jef", 50,new byte[10], new Date(), com.realdolmen.course.domain.Passenger.PassengerType.REGULAR, new Date());
+        Adress a = new Adress("Street1","Sreet2","city", "zipcode", "country");
+        Passenger p = new Passenger("bal","Vermeulen","Jef", 50,new byte[10], new Date(), com.realdolmen.course.domain.Passenger.PassengerType.REGULAR,new Date(),a);
         em().persist(p);
         assertNotNull(p.getId());
         assertNotNull(p.getDateOfBirth());
@@ -27,7 +28,7 @@ public class PassengerPersistence extends DataSetPersistenceTest {
 
     @Test()
     public void Persist() throws Exception{
-        Passenger p = new Passenger(null,null,null,0,new byte[10], null, null,null);
+        Passenger p = new Passenger(null,null,null,0,new byte[10], null, null,null,null);
         assertNull(p.getId());
         assertNull(p.getDateOfBirth());
         assertNull(p.getPassengerType());
@@ -35,7 +36,8 @@ public class PassengerPersistence extends DataSetPersistenceTest {
 
     @Test
     public void BeforePersist(){
-        Passenger p = new Passenger("bal","Vermeulen","Jos", 50,new byte[10], new Date(), com.realdolmen.course.domain.Passenger.PassengerType.REGULAR, new Date());
+        Adress a = new Adress("Street1","Sreet2","city", "zipcode", "country");
+        Passenger p = new Passenger("bal","Vermeulen","Jef", 50,new byte[10], new Date(), com.realdolmen.course.domain.Passenger.PassengerType.REGULAR,new Date(),a);
         assertNull(p.getDateLastUpdated());
         em().persist(p);
         assertNotNull(p.getDateLastUpdated());
