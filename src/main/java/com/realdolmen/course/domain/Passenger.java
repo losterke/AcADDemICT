@@ -111,4 +111,52 @@ public class Passenger {
     public Date getDateLastUpdated() {
         return dateLastUpdated;
     }
+
+    public static void setLogger(Logger logger) {
+        Passenger.logger = logger;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setSsn(String ssn) {
+        this.ssn = ssn;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setFrequentFlyerMiles(int frequentFlyerMiles) {
+        this.frequentFlyerMiles = frequentFlyerMiles;
+    }
+
+    public void setPicture(byte[] picture) {
+        this.picture = picture;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public void setPassengerType(PassengerType passengerType) {
+        this.passengerType = passengerType;
+    }
+
+    public void setLastFlight(Date lastFlight) {
+        this.lastFlight = lastFlight;
+    }
+
+    public void setDateLastUpdated(Date dateLastUpdated) {
+        this.dateLastUpdated = dateLastUpdated;
+    }
 }

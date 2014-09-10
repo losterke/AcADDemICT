@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.util.Date;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
@@ -11,7 +12,7 @@ import static org.junit.Assert.assertNull;
 /**
  * Created by TLAAU71 on 8/09/2014.
  */
-public class PassengerPersistence extends PersistenceTest {
+public class PassengerPersistence extends DataSetPersistenceTest {
 
     @Test
     public void PassengerPersistence()throws Exception{
@@ -40,4 +41,19 @@ public class PassengerPersistence extends PersistenceTest {
         assertNotNull(p.getDateLastUpdated());
     }
 
+
+    @Test
+    public void getReference(){
+        Passenger p = em().getReference(Passenger.class, 1L);
+        assertNotNull(p.getId());
+    }
+
+    @Test
+    public void update(){
+        Passenger p = em().getReference(Passenger.class, 2L);
+        assertEquals("Vermeulen", p.getLastName());
+        p.setLastName("De Man");
+        em().merge(p);
+        assertEquals("De Man", p.getLastName());
+    }
 }
